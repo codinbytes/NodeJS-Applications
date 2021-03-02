@@ -61,4 +61,14 @@ app.put("/blog/:id", (req, res) => {
   );
 });
 
+app.delete("/blog/:id", (req, res) => {
+  model.remove({ _id: req.params.id }, (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json({ message: "Deleted Successfully" });
+    }
+  });
+});
+
 app.listen(3000);
