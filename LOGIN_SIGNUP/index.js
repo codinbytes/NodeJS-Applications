@@ -19,7 +19,21 @@ app.get("/signup", (req, res) => {
   res.sendFile(__dirname + "/static/signup.html");
 });
 
-app.post("/login", function (req, res, next) {});
+app.post("/login", async function (req, res, next) {
+  try {
+    const email = req.body.username;
+    const password = req.body.password;
+    const result = await Users.findOne({ email: email });
+
+    if (result.password === password) {
+      res.status(201).send("Successfully Logged in");
+    } else {
+      res.send("invalid form");
+    }
+  } catch (error) {
+    res.status(400).send("Invalid From");
+  }
+});
 
 app.post("/signup", async function (req, res, next) {
   try {
