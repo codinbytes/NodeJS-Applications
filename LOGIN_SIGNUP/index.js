@@ -3,6 +3,7 @@ const path = require("path");
 const Users = require("./models/Users");
 const bodyParser = require("body-parser");
 const database = require("./db/conn");
+const bcrypt = require("bcryptjs");
 const app = express();
 
 const staticPath = path.join(__dirname, "static");
@@ -24,8 +25,8 @@ app.post("/login", async function (req, res, next) {
     const email = req.body.username;
     const password = req.body.password;
     const result = await Users.findOne({ email: email });
-
-    if (result.password === password) {
+    const validcomplete = bcrypt.compare(password, result.password);
+    if (validcomplete) {
       res.status(201).send("Successfully Logged in");
     } else {
       res.send("invalid form");
@@ -45,7 +46,6 @@ app.post("/signup", async function (req, res, next) {
         email: req.body.emailsignup,
         password: req.body.passwordsignup,
       });
-
       const user = await User.save();
       res.status(201).send("Registered Successfully");
     }
@@ -53,4 +53,5 @@ app.post("/signup", async function (req, res, next) {
     res.status(400).send(error.message);
   }
 });
+
 app.listen(5000);
