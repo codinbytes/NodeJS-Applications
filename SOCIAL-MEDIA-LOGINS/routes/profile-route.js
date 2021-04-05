@@ -13,7 +13,7 @@ const authCheck = function(req,res,next){
 
 
 router.get("/",authCheck,(req,res)=>{
-    res.send("<h2>Welcome to your dashboard</h2><h2>" + req.user.username+"</h2>")
+    res.render("profile",{user:req.user})
 
 })
 
