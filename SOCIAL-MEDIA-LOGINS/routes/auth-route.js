@@ -6,7 +6,7 @@ const User = require("../models/User");
 // login route
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login",{user:req.user});
 });
 
 // auth with google
