@@ -17,6 +17,11 @@
     <link rel="shortcut icon" href="../favicon.ico" />
     <link rel="stylesheet" type="text/css" href=".css/demo.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container">
@@ -27,7 +32,12 @@
         <div id="container_demo">
           <div id="wrapper">
             <div id="login" class="animate form">
-              <form action="/signup" autocomplete="on" method="POST">
+              <form
+                action="/signup"
+                autocomplete="on"
+                method="POST"
+                id="signup-form"
+              >
                 <h1>Sign up</h1>
                 <p>
                   <label for="usernamesignup" class="uname" data-icon="u"
@@ -93,5 +103,24 @@
         </div>
       </section>
     </div>
+    <script>
+      $(document).ready(function () {
+        $("#signup-form").submit(function (e) {
+          e.preventDefault();
+          const data = $(this).serialize();
+          $.ajax({
+            url: "/signup",
+            method: "post",
+            data: data,
+            success: function (result, staus, xhr) {
+              console.log("Success");
+            },
+            error: function (status, err, xhr) {
+              console.log("error");
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>
