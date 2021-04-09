@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.ts",
+    "build": "rm -rf build && tsc -p ."
   },
   "author": "saadhaxxan",
   "license": "MIT",
@@ -12,6 +13,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "path": "^0.12.7",
     "typescript": "^4.2.4",
     "typescript-rest": "^3.0.2"
   },
