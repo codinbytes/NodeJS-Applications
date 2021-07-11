@@ -1,0 +1,23 @@
+{
+  "name": "node-mysql-api",
+  "version": "1.0.0",
+  "description": "A starter code for mysql with express and node",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./index.js"
+  },
+  "keywords": [
+    "mysql",
+    "node",
+    "express"
+  ],
+  "author": "MeerHamza1421",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
